@@ -2,6 +2,7 @@ Shader "Shader/phong" {
     Properties {
         _MainColor ("Main Color", Color) = (1,1,1,1)
         _SpecularPower ("Specular Power", Range(1, 100)) = 16
+        _SpecularColor ("Specular Color", Color) = (1,1,1,1)
     }
     SubShader {
         Tags {
@@ -22,6 +23,7 @@ Shader "Shader/phong" {
             #pragma target 3.0
             float4 _MainColor;
             float _SpecularPower;
+            float4 _SpecularColor;
 
             struct VertexInput {
                 float4 vertex : POSITION;
@@ -49,8 +51,8 @@ Shader "Shader/phong" {
                 float specular = pow(rDotv, _SpecularPower);
 
                 float3 ambient = _MainColor.rgb * 0.1;
-                float3 diffuseColor = float3(0.5, 0.5, 0.5);
-                float3 specularColor = float3(1.0, 1.0, 1.0);
+                float3 diffuseColor = _MainColor;
+                float3 specularColor = _SpecularColor;
                 float3 color = ambient + diffuse * diffuseColor + specular * specularColor;
             
                 return float4(color, 1.0);
