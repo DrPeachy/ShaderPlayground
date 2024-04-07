@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: halfToon
-  m_Shader: {fileID: 4800000, guid: 05d660fc575711a40b39db6bc4ee8ecf, type: 3}
+  m_Name: phong
+  m_Shader: {fileID: 4800000, guid: 077ec5c093c3432489540dfe13b3332b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -74,18 +74,12 @@ Material:
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SpecularPower: 12
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _dot_density: 318
-    - _dot_size: 2.66
-    - _node_5869: 0
-    - _node_6757: 32.7
-    - _node_8620: 1
-    - _node_8620_copy: 0.3566141
-    - _node_9493: 3.02
-    - _step_factor: 0.898
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MainColor: {r: 1, g: 0, b: 0.14646244, a: 1}
   m_BuildTextureStacks: []
