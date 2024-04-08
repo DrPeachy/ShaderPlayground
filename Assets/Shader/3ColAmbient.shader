@@ -1,9 +1,10 @@
-Shader "Unlit/3dColAmbient"{
+Shader "Unlit/3ColAmbient"{
     Properties {
         _EnvUpCol("Up Color", Color) = (1,1,1,1)
         _EnvDownCol("Down Color", Color) = (1,1,1,1)
         _EnvSideCol("Side Color", Color) = (1,1,1,1)
         _Occlusion("Occlusion", 2D) = "white" {}
+        [Toggle(_AOon)] _AOon("is AO on", Float) = 1
     }
     SubShader {
         Tags {
@@ -26,6 +27,7 @@ Shader "Unlit/3dColAmbient"{
             uniform float4 _EnvUpCol;
             uniform float4 _EnvDownCol;
             uniform float4 _EnvSideCol;
+            uniform float _AOon;
 
             struct VertexInput {
                 float4 vertex : POSITION;
@@ -52,9 +54,11 @@ Shader "Unlit/3dColAmbient"{
                 float sideMask  = 1 - upMask - downMask;
 
                 float3 envCol = _EnvUpCol * upMask + _EnvDownCol * downMask + _EnvSideCol * sideMask;
-
+                float ao = 1.0;
                 // Ambient Occlusion
-                float ao = tex2D(_Occlusion, i.uv);
+                if(_AOon > 0.5){
+                    ao = tex2D(_Occlusion, i.uv);
+                }
 
                 return float4(envCol * ao, 1.0);
             }
