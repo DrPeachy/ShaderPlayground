@@ -23,6 +23,7 @@ Shader "Unlit/3ColAmbient"{
             #include "UnityCG.cginc"
             #pragma multi_compile_fwdbase_fullshadows
             #pragma target 3.0
+            // Properties
             uniform sampler2D _Occlusion;
             uniform float4 _EnvUpCol;
             uniform float4 _EnvDownCol;
