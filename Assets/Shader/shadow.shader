@@ -28,7 +28,7 @@ Shader "Shader/shadow" {
             struct VertexOutput {
                 float4 pos : SV_POSITION;
                 float3 nDirWS : TEXCOORD0;
-                LIGHTING_COORDS(0, 1)
+                LIGHTING_COORDS(1, 2)
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
