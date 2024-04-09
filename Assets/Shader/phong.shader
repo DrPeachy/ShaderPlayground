@@ -32,11 +32,13 @@ Shader "Shader/phong" {
             struct VertexOutput {
                 float4 pos : SV_POSITION;
                 float3 nDirWS : TEXCOORD0;
+                float3 posWS : TEXCOORD1;
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
                 o.pos = UnityObjectToClipPos( v.vertex );
                 o.nDirWS = UnityObjectToWorldNormal( v.normal );
+                o.posWS = mul( unity_ObjectToWorld, v.vertex );
                 return o;
             }
             float4 frag(VertexOutput i) : COLOR {
@@ -46,7 +48,7 @@ Shader "Shader/phong" {
                 float diffuse = max(nDotl, 0.0);
 
                 float3 r = reflect(-lDir, nDir);
-                float3 v = normalize(_WorldSpaceCameraPos.xyz - i.nDirWS);
+                float3 v = normalize(_WorldSpaceCameraPos.xyz - i.posWS.xyz);
                 float rDotv = max(dot(r, v), 0.0);
                 float specular = pow(rDotv, _SpecularPower);
 

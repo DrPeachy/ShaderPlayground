@@ -52,21 +52,21 @@ Shader "Shader/oldFashion" {
             struct VertexInput {
                 float4 vertex : POSITION;
                 float4 normal : NORMAL;
-                float2 uv : TEXCOORD0;
+                float2 uv0 : TEXCOORD0;
             };
             struct VertexOutput {
                 float4 pos : SV_POSITION;
-                float4 posWS : TEXCOORD0;
-                float3 nDirWS : TEXCOORD1;
-                float2 uv : TEXCOORD2;
-                LIGHTING_COORDS(3, 4)
+                float4 posWS : TEXCOORD1;
+                float3 nDirWS : TEXCOORD2;
+                float2 uv : TEXCOORD3;
+                LIGHTING_COORDS(4, 5)
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
                 o.pos = UnityObjectToClipPos( v.vertex );
                 o.posWS = mul( unity_ObjectToWorld, v.vertex );
                 o.nDirWS = UnityObjectToWorldNormal( v.normal );
-                o.uv = v.uv;
+                o.uv = v.uv0;
                 TRANSFER_VERTEX_TO_FRAGMENT(o);
                 return o;
             }
@@ -76,7 +76,7 @@ Shader "Shader/oldFashion" {
                 float nDotl = max(dot(nDir, lDir), 0.0);
 
                 float3 r = reflect(-lDir, nDir);
-                float3 v = normalize(_WorldSpaceCameraPos.xyz - i.nDirWS);
+                float3 v = normalize(_WorldSpaceCameraPos.xyz - i.posWS.xyz);
                 float rDotv = max(dot(r, v), 0.0);
 
                 // phong
@@ -88,7 +88,7 @@ Shader "Shader/oldFashion" {
                 float specular = pow(rDotv, _SpecularPower);
                 float3 diffuseCol = ambient;
                 float3 specularCol = _SpecularColor;
-                float3 phongCol = ambient + diffuse * diffuseCol + _SpecularColor * specular;
+                float3 phongCol = ambient + diffuse * diffuseCol + specularCol * specular;
 
                 // Ambient Occlusion
                 float upMask = max(0.0, nDir.y);
@@ -107,7 +107,6 @@ Shader "Shader/oldFashion" {
 
                 // final color
                 float4 finalColor = float4(phongCol, 1.0) * shadow;
-
                 // Apply ambient occlusion
                 finalColor.rgb *= ao;
 
