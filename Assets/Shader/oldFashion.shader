@@ -12,6 +12,8 @@ Shader "Shader/oldFashion" {
         _Occlusion("Occlusion", 2D) = "white" {}
         [Toggle(_AOon)] _AOon("is AO on", Float) = 1
         _EnColWeakness("AO Weakness", Range(0, 1)) = 0.5
+
+        _ShadowIntensity("Shadow Intensity", Range(0, 0.2)) = 0
     }
     SubShader {
         Tags {
@@ -47,6 +49,8 @@ Shader "Shader/oldFashion" {
             uniform float _isTextureOn;
             uniform float _SpecularPower;
             uniform float4 _SpecularColor;
+
+            uniform float _ShadowIntensity;
 
 
             struct VertexInput {
@@ -103,7 +107,7 @@ Shader "Shader/oldFashion" {
                 }
 
                 // shadow
-                float shadow = LIGHT_ATTENUATION(i);
+                float shadow = clamp( LIGHT_ATTENUATION(i), _ShadowIntensity, 1.0 );
 
                 // final color
                 float4 finalColor = float4(phongCol, 1.0) * shadow;
