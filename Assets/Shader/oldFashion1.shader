@@ -1,4 +1,4 @@
-Shader "Shader/oldFashion" {
+Shader "Shader/oldFashion1" {
     Properties {
         _MainColor ("Main Color", Color) = (1,1,1,1)
         _MainTex ("Base (RGB)", 2D) = "white" {}

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: oldFashion
-  m_Shader: {fileID: 4800000, guid: cf1cb7c656a20e24bbc7746d65f4e9b1, type: 3}
+  m_Name: oldFashion2
+  m_Shader: {fileID: 4800000, guid: 9ad90cb50ca0d3a4889a419ab14340a6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -26,6 +26,10 @@ Material:
     m_TexEnvs:
     - _BumpMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CubeMap:
+        m_Texture: {fileID: 8900000, guid: 0c2705013d8e53a488a4e352ae686bb4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -52,6 +56,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 1a50d4c2c30ac9f488828a1d27f80d86, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Occlusion:
         m_Texture: {fileID: 2800000, guid: 148052e57c8845b4e87a5caec54e29f3, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -66,13 +74,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AOWeakness: 1
     - _AOon: 1
     - _BumpScale: 1
+    - _CubeMapMip: 0.98
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EnColWeakness: 0.362
+    - _EnColWeakness: 0.778
+    - _EnvSpecIntensity: 5
+    - _FresnelPower: 1.37
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -80,10 +90,10 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ShadowIntensity: 0.29
+    - _ShadowIntensity: 0.471
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularPower: 5.3
+    - _SpecularPower: 4.3
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
@@ -91,9 +101,9 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _EnvDownCol: {r: 0.43115234, g: 0, b: 1, a: 1}
-    - _EnvSideCol: {r: 0.8139267, g: 0, b: 1, a: 1}
-    - _EnvUpCol: {r: 1, g: 0.79383534, b: 0, a: 1}
-    - _MainColor: {r: 0.7075472, g: 0.5573603, b: 0.5573603, a: 1}
-    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EnvDownCol: {r: 0, g: 0.10007739, b: 1, a: 1}
+    - _EnvSideCol: {r: 1, g: 0, b: 0.79692554, a: 1}
+    - _EnvUpCol: {r: 1, g: 0.0144134285, b: 0, a: 1}
+    - _MainColor: {r: 1, g: 0.49922678, b: 0, a: 1}
+    - _SpecularColor: {r: 0.89002764, g: 1, b: 0, a: 1}
   m_BuildTextureStacks: []
