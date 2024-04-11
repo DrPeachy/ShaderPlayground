@@ -5,6 +5,7 @@ Shader "Shader/cubemap" {
         _NormalMap ("NormalMap", 2D) = "bump" {}
         _FresnelPower ("Fresnel Power", Range(0, 5)) = 1
         _EnvSpecIntensity ("Env Spec Intensity", Range(0, 5)) = 0.5
+        _Occlusion("Occlusion", 2D) = "white" {}
     }
     SubShader {
         Tags {
@@ -27,6 +28,7 @@ Shader "Shader/cubemap" {
             uniform samplerCUBE _CubeMap;
             uniform float _CubeMapMip;
             uniform sampler2D _NormalMap;
+            uniform sampler2D _Occlusion;
             uniform float _FresnelPower;
             uniform float _EnvSpecIntensity;
 
@@ -63,9 +65,10 @@ Shader "Shader/cubemap" {
                 
                 float ndotv = dot(nDirWS, vDirWS);
 
+                float ao = tex2D(_Occlusion, i.uv0).r;
                 float3 cubemap = texCUBElod(_CubeMap, float4(vrDirWS, _CubeMapMip));
                 float fresnel = pow(1.0- max(0, ndotv), _FresnelPower);
-                float3 envSpecLight = cubemap * _EnvSpecIntensity * fresnel;
+                float3 envSpecLight = cubemap * _EnvSpecIntensity * fresnel * ao;
                 return float4(envSpecLight, 1);
             }
             ENDCG
