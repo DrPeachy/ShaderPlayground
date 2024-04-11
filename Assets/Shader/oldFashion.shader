@@ -13,7 +13,7 @@ Shader "Shader/oldFashion" {
         [Toggle(_AOon)] _AOon("is AO on", Float) = 1
         _EnColWeakness("AO Weakness", Range(0, 1)) = 0.5
 
-        _ShadowIntensity("Shadow Intensity", Range(0, 0.2)) = 0
+        _ShadowIntensity("Shadow Intensity", Range(0, 0.5)) = 0
     }
     SubShader {
         Tags {
