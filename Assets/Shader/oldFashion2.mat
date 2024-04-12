@@ -95,8 +95,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmitInt: 1
-    - _EnColWeakness: 0.214
-    - _EnvDiffInt: 0.133
+    - _EnColWeakness: 0.156
+    - _EnvDiffInt: 1
     - _EnvSpecInt: 1.37
     - _EnvSpecIntensity: 3.34
     - _FresnelPow: 0.63
@@ -111,7 +111,7 @@ Material:
     - _ShadowInt: 0
     - _ShadowIntensity: 0.171
     - _SmoothnessTextureChannel: 0
-    - _SpecPow: 16.8
+    - _SpecPow: 10.4
     - _SpecularHighlights: 1
     - _SpecularPower: 8
     - _SrcBlend: 1
@@ -126,8 +126,8 @@ Material:
     - _EmitCol: {r: 1, g: 0.9292453, b: 0.9292453, a: 1}
     - _EnvDownCol: {r: 0.047864437, g: 0, b: 1, a: 1}
     - _EnvSideCol: {r: 0, g: 1, b: 0.40072107, a: 1}
-    - _EnvUpCol: {r: 1, g: 0.0144134285, b: 0, a: 1}
-    - _MainCol: {r: 0.9743725, g: 1, b: 0, a: 1}
+    - _EnvUpCol: {r: 1, g: 0.058823533, b: 0, a: 1}
+    - _MainCol: {r: 1, g: 1, b: 1, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecCol: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 0.89002764, g: 1, b: 0, a: 1}
