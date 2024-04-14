@@ -18,11 +18,11 @@ Shader "Shader/ogre/ogre_base" {
             [PowerSlider(2.0)]_SpecPow ("Specular Power高光次幂（范围）", Range(0, 100)) = 16
         
         [Header(EnvDiffuse)][Space(10)]
+            _EnvCol ("Env Color", Color) = (1,1,1,1)
             _EnvDiffInt ("Env Diff Intensity", Range(0, 1)) = 0.2
 
         [Header(EnvSpecular)][Space(10)]
-            _EnvSpecInt ("Env Spec Intensity", Range(0, 5)) = 0.5
-            _FresnelPow ("Fresnel Power", Range(0, 5)) = 1
+            _EnvSpecInt ("Env Spec Intensity", Range(0, 30)) = 0.5
 
         [Header(Emission)][Space(10)]
             _EmitInt ("Emission Intensity", Range(0, 1)) = 0.5
@@ -75,7 +75,7 @@ Shader "Shader/ogre/ogre_base" {
             uniform half _EnvDiffInt;
 
             // env lighting specular
-            uniform half3 _EnvSpecInt;
+            uniform half _EnvSpecInt;
 
             // rim lighting
             uniform half3 _RimCol;
@@ -140,7 +140,7 @@ Shader "Shader/ogre/ogre_base" {
                 half metalic = var_MetalMask;
                 half3 baseCol = var_MainTex.rgb;
                 half specTint = var_MaskTex.r;
-                half rim = var_MaskTex.g;
+                half rimInt = var_MaskTex.g;
                 half specPow = var_MaskTex.b;
                 half specInt = var_MaskTex.a;
                 half3 fresnel = lerp(var_FresWrapTex, 0, metalic); // 金属质感越强，fresnel越弱
@@ -153,7 +153,7 @@ Shader "Shader/ogre/ogre_base" {
                 /// 光照模型
                 // phong
                 half3 diffuseCol = lerp(baseCol, half3(0.0, 0.0, 0.0), metalic);
-                half3 specularCol = lerp(half3(0.0, 0.0, 0.0), baseCol, specTint) * specInt;
+                half3 specularCol = lerp(half3(1.0, 1.0, 1.0), baseCol, specTint) * specInt;
                 
                 half halfLambert = 0.5 * nDotl + 0.5; // to sample the ramptex
                 half3 var_DiffWrap = tex2D(_DiffWrapTex, half2(tex2D(_DiffWrapTex, halfLambert).r, 0.1));
@@ -171,18 +171,19 @@ Shader "Shader/ogre/ogre_base" {
                 half3 envDiff = _EnvCol * diffuseCol * _EnvDiffInt;
 
                 // env specular环境镜面反射
-                // float fresnel = pow(1.0 - max(dot(nDirWS, vDirWS), 0.0), _FresnelPow);
-                // float3 envSpec = var_Cubemap * _EnvSpecInt * fresnel;
+                half reflectInt = max(fresSpec, metalic) * specInt;
+                half3 envSpec = specularCol * var_Cubemap * _EnvSpecInt * reflectInt;
+            
+                half3 envLighting = envDiff + envSpec;
+                // rim lighting
+                half3 rimLighting = _RimCol * fresRim * rimInt * max(0.0, nDirWS.g); // 这里目前还不是很懂
                 
-                // // env lighting
-                // float3 envLighting = (envDiff + envSpec) * var_Occlusion;
-
-                // // emission
-                // float3 emission = var_EmitTex * _EmitInt;
+                // emission
+                half3 emission = diffuseCol * var_EmitMask * _EmitInt;
                 
-                // // final color
-                // float3 finalColor = dirLighting + envLighting + emission;
-                return half4(dirLighting, 1.0);
+                // final color
+                float3 finalColor = dirLighting + envLighting + rimLighting + emission;
+                return half4(finalColor, 1.0);
                 
             }
             ENDCG
