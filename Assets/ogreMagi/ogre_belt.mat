@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ogre_belt
-  m_Shader: {fileID: 4800000, guid: 24f2f338017a25945b7528aca35712af, type: 3}
+  m_Shader: {fileID: 4800000, guid: e756cb95f75663643901efc414daf8c6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -27,6 +27,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _CubeMap:
+        m_Texture: {fileID: 8900000, guid: 29a437911334e1c4496c5a90eaa7e3b0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -39,16 +43,40 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DiffWrapTex:
+        m_Texture: {fileID: 2800000, guid: 49b02e0726ff7b84d83118991afa97ce, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EmitMask:
+        m_Texture: {fileID: 2800000, guid: f512c3b170130fb43ae6b13b7558224b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FresWrapTex:
+        m_Texture: {fileID: 2800000, guid: 1e0787b73a8e2aa45876638514ef2496, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: fee104f52b54fa341861d3d043ae91f7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 2800000, guid: 3532ff172d90eca47b664b998639cc07, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetalMask:
+        m_Texture: {fileID: 2800000, guid: b7686af4adc2bdb44a212e5a52f6f88d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTex:
+        m_Texture: {fileID: 2800000, guid: 2929e184b55bcc7468b9b9b940f99a4e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -65,6 +93,9 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EmitInt: 0.543
+    - _EnvDiffInt: 0.359
+    - _EnvSpecInt: 7.7
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -73,6 +104,8 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
+    - _SpecInt: 1.16
+    - _SpecPow: 23
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
@@ -80,4 +113,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EnvCol: {r: 1, g: 1, b: 1, a: 1}
+    - _LightCol: {r: 1, g: 1, b: 1, a: 1}
+    - _RimCol: {r: 25.688934, g: 25.688934, b: 25.688934, a: 1}
   m_BuildTextureStacks: []
