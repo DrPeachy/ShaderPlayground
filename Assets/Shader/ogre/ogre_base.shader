@@ -2,14 +2,12 @@ Shader "Shader/ogre/ogre_base" {
     Properties {
         [Header(Texture)][Space(10)]
             _MainTex ("Base (RGB)", 2D) = "white" {}
+            _MaskTex ("R: TintByBase G: Rim B: Spec Pow[0, 1] A: Spec Mask", 2D) = "black" {}
+            _WrapTex ("R: Col G: Rim B: Spec A: Diff", 2D) = "black" {}
             [NORMAL]_NormalTex ("NormalMap", 2D) = "bump" {}
-            _SpecTex ("SpecularMap", 2D) = "grey" {}
-            _SpecExp ("SpecularExponent", 2D) = "grey" {}
-            _SpecMask ("SpecularMask", 2D) = "black" {}
             _MetalMask ("MetalMask", 2D) = "black" {}
-            _EmitTex ("EmitMap", 2D) = "black" {}
+            _EmitMask ("EmitMask", 2D) = "black" {}
             _CubeMap ("CubeMap", Cube) = "_Skybox" {}
-            _Occlusion("Occlusion", 2D) = "white" {}
         
         [Header(Diffuse)][Space(10)]
             _MainCol ("Main Color", Color) = (1,1,1,1)
@@ -22,6 +20,7 @@ Shader "Shader/ogre/ogre_base" {
         [Header(Specular)][Space(10)]
             [PowerSlider(2)]_SpecPow ("Specular Power", Range(1, 100)) = 16
             _SpecCol ("Specular Color", Color) = (1,1,1,1)
+            _SpecPow ("Specular Power", Range(0, 100)) = 16
             _EnvSpecInt ("Env Spec Intensity", Range(0, 5)) = 0.5
             _FresnelPow ("Fresnel Power", Range(0, 5)) = 1
             _CubeMapMip ("CubeMapMip", Range(0, 7)) = 0
@@ -55,12 +54,13 @@ Shader "Shader/ogre/ogre_base" {
             #pragma target 3.0
 
             // Properties
-            uniform sampler2D _Occlusion;
             uniform sampler2D _MainTex;
             uniform sampler2D _NormalTex;
             uniform sampler2D _SpecTex;
             uniform sampler2D _EmitTex;
             uniform samplerCUBE _CubeMap;
+            uniform sampler2D _SpecExp;
+            uniform sampler2D _SpecMask;
 
             uniform float4 _EnvUpCol;
             uniform float4 _EnvDownCol;
@@ -135,38 +135,41 @@ Shader "Shader/ogre/ogre_base" {
                 float var_Occlusion = tex2D(_Occlusion, i.uv0);
                 float cubemapMip = lerp(_CubeMapMip, 1.0, var_SpecTex.a);
                 float3 var_Cubemap = texCUBElod(_CubeMap, float4(vrDirWS, _CubeMapMip)).rgb;
+                float3 var_SpecExp = tex2D(_SpecExp, i.uv0);
+                float3 var_SpecMask = tex2D(_SpecMask, i.uv0);
 
-                /// Emission
-                // phong光源漫反射
-                float diffuse = max(nDotl, 0.0);
-                float3 diffuseCol = var_MainTex * _MainCol.rgb;
-                float specPow = lerp(1.0, _SpecPow, var_SpecTex.a);
-                float specular = pow(lrDotv, specPow);
-                float specularCol = var_SpecTex.rgb;
-                float shadow = clamp( LIGHT_ATTENUATION(i), _ShadowInt, 1.0 );
-                float3 dirLighting = (diffuse * diffuseCol + specularCol * specular) * shadow * _LightColor0;
+                // /// Emission
+                // // phong光源漫反射
+                // float diffuse = max(nDotl, 0.0);
+                // float3 diffuseCol = var_MainTex * _MainCol.rgb;
+                // float3 specPowRatio = var_SpecExp.r;
+                // float specPow = specPowRatio * var_SpecMask;
+                // float specular = pow(lrDotv, specPow);
+                // float specularCol = var_SpecTex.rgb;
+                // float shadow = clamp( LIGHT_ATTENUATION(i), _ShadowInt, 1.0 );
+                // float3 dirLighting = (diffuse * diffuseCol + specularCol * specular) * shadow * _LightColor0;
 
-                // 3 color ambient, 环境漫反射
-                float upMask = max(0.0, nDirWS.y);
-                float downMask = max(0.0, -nDirWS.y);
-                float sideMask  = 1 - upMask - downMask;
+                // // 3 color ambient, 环境漫反射
+                // float upMask = max(0.0, nDirWS.y);
+                // float downMask = max(0.0, -nDirWS.y);
+                // float sideMask  = 1 - upMask - downMask;
 
-                float3 envCol = TriColAmbient(nDirWS, _EnvUpCol.rgb, _EnvDownCol.rgb, _EnvSideCol.rgb, _EnColWeakness);
-                float3 envDiff = envCol * diffuseCol * _EnvDiffInt;
+                // float3 envCol = TriColAmbient(nDirWS, _EnvUpCol.rgb, _EnvDownCol.rgb, _EnvSideCol.rgb, _EnColWeakness);
+                // float3 envDiff = envCol * diffuseCol * _EnvDiffInt;
 
-                // env specular环境镜面反射
-                float fresnel = pow(1.0 - max(dot(nDirWS, vDirWS), 0.0), _FresnelPow);
-                float3 envSpec = var_Cubemap * _EnvSpecInt * fresnel;
+                // // env specular环境镜面反射
+                // float fresnel = pow(1.0 - max(dot(nDirWS, vDirWS), 0.0), _FresnelPow);
+                // float3 envSpec = var_Cubemap * _EnvSpecInt * fresnel;
                 
-                // env lighting
-                float3 envLighting = (envDiff + envSpec) * var_Occlusion;
+                // // env lighting
+                // float3 envLighting = (envDiff + envSpec) * var_Occlusion;
 
-                // emission
-                float3 emission = var_EmitTex * _EmitInt;
+                // // emission
+                // float3 emission = var_EmitTex * _EmitInt;
                 
-                // final color
-                float3 finalColor = dirLighting + envLighting + emission;
-                return float4(finalColor, 1.0);
+                // // final color
+                // float3 finalColor = dirLighting + envLighting + emission;
+                // return float4(finalColor, 1.0);
                 
             }
             ENDCG
