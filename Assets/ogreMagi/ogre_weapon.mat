@@ -93,7 +93,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EmitInt: 0.331
+    - _EmitInt: 1
     - _EnvDiffInt: 0.213
     - _EnvSpecInt: 15.4
     - _GlossMapScale: 1
