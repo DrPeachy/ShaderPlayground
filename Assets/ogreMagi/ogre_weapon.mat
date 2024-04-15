@@ -94,7 +94,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmitInt: 1
-    - _EnvDiffInt: 1
+    - _EnvDiffInt: 0
     - _EnvSpecInt: 30
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -104,7 +104,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
-    - _SpecInt: 3.8
+    - _SpecInt: 10
     - _SpecPow: 100
     - _SpecularHighlights: 1
     - _SrcBlend: 1

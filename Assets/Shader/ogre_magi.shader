@@ -30,6 +30,9 @@ Shader "Shader/ogre/ogre_magi" {
         [Header(RimLight)][Space(10)]
             [HDR]_RimCol ("Rim Color", Color) = (1,1,1,1)
 
+        [HideInInspector]
+        _Cutoff ("Alpha Cutoff", Range(0,1)) = 0.5
+
     }
     SubShader {
         Tags {
@@ -41,7 +44,7 @@ Shader "Shader/ogre/ogre_magi" {
                 "LightMode"="ForwardBase"
             }
             
-            
+            Cull Off
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -82,6 +85,9 @@ Shader "Shader/ogre/ogre_magi" {
 
             // emission
             uniform half _EmitInt;
+
+            // other
+            uniform half _Cutoff;
 
             struct VertexInput {
                 float4 vertex : POSITION;
@@ -129,7 +135,7 @@ Shader "Shader/ogre/ogre_magi" {
                 half nDotv = dot(nDirWS, vDirWS);
 
                 // texture sampling
-                half3 var_MainTex = tex2D(_MainTex, i.uv0);
+                half4 var_MainTex = tex2D(_MainTex, i.uv0);
                 half4 var_MaskTex = tex2D(_MaskTex, i.uv0);
                 half3 var_FresWrapTex = tex2D(_FresWrapTex, nDotv).rgb;
                 half var_MetalMask = tex2D(_MetalMask, i.uv0).r;
@@ -139,6 +145,7 @@ Shader "Shader/ogre/ogre_magi" {
                 // color pass extraction
                 half metalic = var_MetalMask;
                 half3 baseCol = var_MainTex.rgb;
+                half opacity = var_MainTex.a;
                 half specTint = var_MaskTex.r;
                 half rimInt = var_MaskTex.g;
                 half specPow = var_MaskTex.b;
@@ -158,13 +165,11 @@ Shader "Shader/ogre/ogre_magi" {
                 half halfLambert = 0.5 * nDotl + 0.5; // to sample the ramptex
                 half3 var_DiffWrap = tex2D(_DiffWrapTex, half2(halfLambert, 0.1));
                 half3 diffuse = var_DiffWrap;
-                half3 dirDiff = diffuseCol * diffuse * _LightCol;
 
-                half3 specular = pow(lrDotv, specPow * _SpecPow);
+                half3 specular = pow(max(lrDotv, 0.0), specPow * _SpecPow);
                 specular *= max(nDotl, 0.0);
                 specular = max(specular, fresSpec);
                 specular *= _SpecInt;
-                half3 dirSpec = specularCol * specular * _LightCol;
                 
                 half3 dirLighting = (diffuse * diffuseCol + specularCol * specular) * shadow * _LightCol;
 
@@ -178,13 +183,16 @@ Shader "Shader/ogre/ogre_magi" {
             
                 half3 envLighting = envDiff + envSpec;
                 // rim lighting
-                half3 rimLighting = _RimCol * fresRim * rimInt * max(0.0, nDirWS.g); // 这里目前还不是很懂
+                half3 rimLighting = _RimCol * fresRim * rimInt * max(0.0, nDirWS.g); // 最后是取了顶部遮罩
                 
                 // emission
                 half3 emission = diffuseCol * var_EmitMask * _EmitInt;
                 
                 // final color
-                float3 finalColor = dirLighting + envLighting + rimLighting + emission;
+                half3 finalColor = dirLighting + envLighting + rimLighting + emission;
+
+                // alpha cutoff
+                clip(opacity - _Cutoff);
                 return half4(finalColor, 1.0);
                 
             }
