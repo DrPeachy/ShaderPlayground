@@ -153,16 +153,18 @@ Shader "Shader/ogre/ogre_magi" {
                 /// 光照模型
                 // phong
                 half3 diffuseCol = lerp(baseCol, half3(0.0, 0.0, 0.0), metalic);
-                half3 specularCol = lerp(half3(1.0, 1.0, 1.0), baseCol, specTint) * specInt;
+                half3 specularCol = lerp( baseCol, half3(0.3, 0.3, 0.3), specTint) * specInt;
                 
                 half halfLambert = 0.5 * nDotl + 0.5; // to sample the ramptex
-                half3 var_DiffWrap = tex2D(_DiffWrapTex, half2(tex2D(_DiffWrapTex, halfLambert).r, 0.1));
+                half3 var_DiffWrap = tex2D(_DiffWrapTex, half2(halfLambert, 0.1));
                 half3 diffuse = var_DiffWrap;
+                half3 dirDiff = diffuseCol * diffuse * _LightCol;
 
                 half3 specular = pow(lrDotv, specPow * _SpecPow);
                 specular *= max(nDotl, 0.0);
                 specular = max(specular, fresSpec);
                 specular *= _SpecInt;
+                half3 dirSpec = specularCol * specular * _LightCol;
                 
                 half3 dirLighting = (diffuse * diffuseCol + specularCol * specular) * shadow * _LightCol;
 

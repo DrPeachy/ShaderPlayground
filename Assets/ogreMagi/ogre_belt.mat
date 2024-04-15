@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CubeMap:
-        m_Texture: {fileID: 8900000, guid: 29a437911334e1c4496c5a90eaa7e3b0, type: 3}
+        m_Texture: {fileID: 8900000, guid: 581427db156377745bfea476da235081, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -93,9 +93,9 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EmitInt: 0.62
-    - _EnvDiffInt: 0.359
-    - _EnvSpecInt: 7.7
+    - _EmitInt: 1
+    - _EnvDiffInt: 1
+    - _EnvSpecInt: 30
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -104,8 +104,8 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
-    - _SpecInt: 4.2
-    - _SpecPow: 23
+    - _SpecInt: 3.8
+    - _SpecPow: 100
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
@@ -115,5 +115,5 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EnvCol: {r: 1, g: 1, b: 1, a: 1}
     - _LightCol: {r: 1, g: 1, b: 1, a: 1}
-    - _RimCol: {r: 67.79353, g: 67.79353, b: 67.79353, a: 1}
+    - _RimCol: {r: 14.928529, g: 14.928529, b: 14.928529, a: 1}
   m_BuildTextureStacks: []
