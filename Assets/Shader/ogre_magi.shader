@@ -32,7 +32,8 @@ Shader "Shader/ogre/ogre_magi" {
 
         [HideInInspector]
         _Cutoff ("Alpha Cutoff", Range(0,1)) = 0.5
-
+        [HideInInspector]
+        _Color ("Main Color", Color) = (1,1,1,1)
     }
     SubShader {
         Tags {
@@ -199,6 +200,6 @@ Shader "Shader/ogre/ogre_magi" {
             ENDCG
         }
     }
-    FallBack "Diffuse"
+    FallBack "Legacy Shaders/Transparent/Cutout/VertexLit"
     CustomEditor "ShaderForgeMaterialInspector"
 }
