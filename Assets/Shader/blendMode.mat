@@ -24,10 +24,13 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 9dcae0e153f6a814cbed339fdb985266, type: 3}
+        m_Scale: {x: 9, y: 9}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _BlendOp: 0
+    - _DstBlend: 2
+    - _SrcBlend: 0
     m_Colors: []
   m_BuildTextureStacks: []
