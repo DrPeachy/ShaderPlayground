@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: alphaBlend
-  m_Shader: {fileID: 4800000, guid: b86178f1f26e2e34eb348bc07f155421, type: 3}
+  m_Name: alphaAdditive
+  m_Shader: {fileID: 4800000, guid: a0bd597b30cb2c14cad12aaf28735158, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
