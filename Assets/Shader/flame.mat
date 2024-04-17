@@ -34,8 +34,8 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _InnerCol: {r: 0.34102273, g: 0.9151496, b: 0.9032964, a: 1}
-    - _Noise1Params: {r: 0.7, g: -3.82, b: 0.12, a: 1}
-    - _Noise2Params: {r: 0.24, g: -1.02, b: 1.64, a: 1.1}
+    - _InnerCol: {r: 0.55823165, g: 1.4980394, b: 1.4786365, a: 1}
+    - _Noise1Params: {r: 0.45, g: -3.82, b: 0.12, a: 1}
+    - _Noise2Params: {r: 0.25, g: -1.02, b: 1.64, a: 1.1}
     - _OuterCol: {r: 0, g: 0.86039764, b: 0.8267094, a: 1}
   m_BuildTextureStacks: []
