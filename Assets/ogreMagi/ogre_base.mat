@@ -151,6 +151,6 @@ Material:
     - _EnvUpCol: {r: 1, g: 1, b: 1, a: 1}
     - _LightCol: {r: 1, g: 1, b: 1, a: 1}
     - _MainCol: {r: 1, g: 1, b: 1, a: 1}
-    - _RimCol: {r: 14.928529, g: 14.928529, b: 14.928529, a: 1}
+    - _RimCol: {r: 4.2370954, g: 4.2370954, b: 4.2370954, a: 1}
     - _SpecCol: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

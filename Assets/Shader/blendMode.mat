@@ -29,8 +29,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BlendOp: 0
-    - _DstBlend: 2
-    - _SrcBlend: 0
+    - _BlendOp: 22
+    - _DstBlend: 4
+    - _SrcBlend: 3
     m_Colors: []
   m_BuildTextureStacks: []

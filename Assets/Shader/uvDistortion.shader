@@ -51,12 +51,12 @@ Shader "Unlit/uvDistortion"{
                 o.pos = UnityObjectToClipPos( v.vertex );
                 o.uv0 = v.uv0;
                 o.uv1 = TRANSFORM_TEX(v.uv0, _WarpTex);
-                o.uv1.x = o.uv1.x + frac(_Time.x * _FlowSpeed);
+                o.uv1.y += frac(_Time.x * _FlowSpeed);
                 return o;
             }
             half4 frag(VertexOutput i) : COLOR {
-                half3 var_WarpTex = tex2D( _WarpTex, i.uv1 );
-                float2 uvBias = (var_WarpTex.rg - 0.5) * _WarpInt;
+                half3 var_WarpTex = tex2D( _WarpTex, i.uv1 ).rgb;
+                float2 uvBias = (var_WarpTex.rg - 0.21) * _WarpInt;
                 float2 uv = i.uv0 + uvBias;
                 half4 var_MainTex = tex2D( _MainTex, uv );
 
