@@ -10,4 +10,27 @@
         return envCol;
     }
 
+    void Translation(inout float3 pos, float3 translation) {
+        pos += translation;
+    }
+
+    void Oscillate(inout float4 pos, float amplitude, float frequency, float phase) {
+        pos += amplitude * sin(frequency * _Time.y + phase);
+    }
+
+    void Rotation(inout float3 pos, float3 rotation) {
+        float3x3 rotMat = float3x3(
+            cos(rotation.y) * cos(rotation.z), cos(rotation.y) * sin(rotation.z), -sin(rotation.y),
+            cos(rotation.x) * sin(rotation.z) + sin(rotation.x) * sin(rotation.y) * cos(rotation.z), cos(rotation.x) * cos(rotation.z) - sin(rotation.x) * sin(rotation.y) * sin(rotation.z), sin(rotation.x) * cos(rotation.y),
+            sin(rotation.x) * sin(rotation.z) - cos(rotation.x) * sin(rotation.y) * cos(rotation.z), sin(rotation.x) * cos(rotation.z) + cos(rotation.x) * sin(rotation.y) * sin(rotation.z), cos(rotation.x) * cos(rotation.y)
+        );
+        pos = mul(rotMat, pos);
+    }
+
+    void Scale(inout float3 pos, float3 scale) {
+        pos *= scale;
+    }
+
+    
+
 #endif
