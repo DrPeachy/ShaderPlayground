@@ -57,7 +57,7 @@ Shader "Shader/screenUV" {
 
                 half3 finalRGB = var_MainTex.rgb;
                 half opacity = var_MainTex.a * _Opacity * var_ScreenTex.r;
-                return half4(finalRGB, opacity);
+                return half4(finalRGB * opacity, opacity);
             }
             ENDCG
         }
