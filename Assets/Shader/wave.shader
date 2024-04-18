@@ -2,6 +2,7 @@ Shader "Unlit/wave"{
     Properties {
         _MainTex ("Texture", 2D) = "white" {}
         _WarpTex ("Warp Texture", 2D) = "white" {}
+        _TexParams ("X: speedx Y: speedy" , vector) = (1, 1, 1, 1)
         _Warp1Params ("X: scale Y: speedx Z: speedy W: intensity", vector) = (1, 1, 1, 1)
         _Warp2Params ("X: scale Y: speedx Z: speedy W: intensity", vector) = (1, 1, 1, 1)
 
@@ -34,6 +35,7 @@ Shader "Unlit/wave"{
 
             uniform sampler2D _MainTex;
             uniform sampler2D _WarpTex;
+            uniform half4 _TexParams;
             uniform half4 _Warp1Params;
             uniform half4 _Warp2Params;
 
@@ -53,7 +55,7 @@ Shader "Unlit/wave"{
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
                 o.pos = UnityObjectToClipPos( v.vertex );
-                o.uv0 = v.uv0;
+                o.uv0 = v.uv0 * _TexParams.x + frac(_Time.x * _TexParams.xy);
                 o.uv1 = o.uv0 * _Warp1Params.x + frac(_Time.x * _Warp1Params.yz);
                 o.uv2 = o.uv0 * _Warp2Params.x + frac(_Time.x * _Warp2Params.yz);
                 

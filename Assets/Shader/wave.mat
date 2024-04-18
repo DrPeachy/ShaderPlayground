@@ -28,16 +28,17 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WarpTex:
-        m_Texture: {fileID: 2800000, guid: 261a38bd2612b9d4789c630016301381, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9e8cc69cb8fcac045ad31fb16b626488, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _FoamCol: {r: 0, g: 0.05708027, b: 1, a: 1}
+    - _FoamCol: {r: 0, g: 0.1333332, b: 0.5, a: 1}
     - _InnerCol: {r: 1, g: 1, b: 1, a: 1}
     - _OuterCol: {r: 1, g: 1, b: 1, a: 1}
-    - _Warp1Params: {r: 1, g: 1, b: 1, a: 1}
-    - _Warp2Params: {r: 1, g: 1, b: 1, a: 1}
-    - _WaterCol: {r: 1, g: 1, b: 1, a: 1}
+    - _TexParams: {r: 1, g: 1.27, b: 0.75, a: 1}
+    - _Warp1Params: {r: 0.32, g: -0.59, b: -0, a: 0.52}
+    - _Warp2Params: {r: 1.06, g: 0.64, b: 0.59, a: 0.58}
+    - _WaterCol: {r: 2.8703847, g: 8.787532, b: 9.082412, a: 1}
   m_BuildTextureStacks: []
