@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: vertexAni
+  m_Shader: {fileID: 4800000, guid: 6604ed8667e12414492f9deab3694394, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: f907f8cd056e0f044b27502f580b7529, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors:
+    - _BodyRotParams: {r: 7.07, g: 1, b: 0, a: 0}
+    - _BodySwingParams: {r: 0.21, g: 1, b: 0, a: 0}
+    - _BodyTransParams: {r: 0.01, g: 1, b: 0, a: 0}
+    - _HeadScaleParams: {r: 0.08, g: 1.73, b: 0, a: 0}
+    - _TailRotParams: {r: 6.55, g: 1.66, b: 0, a: 0}
+  m_BuildTextureStacks: []

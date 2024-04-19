@@ -40,7 +40,7 @@
         float angleY = amplitude * sin(frequency * _Time.y * TWO_PI + phase);
 
         float radY = radians(angleY);
-        float sinY, cosY = 0;
+        float sinY, cosY;
         sincos(radY, sinY, cosY);
         pos.yz = float2(pos.y * cosY - pos.z * sinY, pos.y * sinY + pos.z * cosY);
     }
