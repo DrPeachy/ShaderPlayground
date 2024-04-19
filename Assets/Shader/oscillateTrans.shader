@@ -1,9 +1,9 @@
 Shader "Shader/oscillateTrans" {
     Properties {
         _MainTex ("RGB: color, A: Alpha Blend", 2D) = "grey" {}
-        _Amplitude ("Amplitude", Range(0, 1)) = 0.1
-        _Frequency ("Frequency", Range(0, 1)) = 0.1
-        _Phase ("Phase", Range(0, 1)) = 0.1
+        _Amplitude ("Amplitude", Range(0, 5)) = 0.1
+        _Frequency ("Frequency", Range(0, 5)) = 0.1
+        _Phase ("Phase", Range(0, 5)) = 0.0
     }
     SubShader {
         Tags {
@@ -17,7 +17,7 @@ Shader "Shader/oscillateTrans" {
             Tags {
                 "LightMode"="ForwardBase"
             }
-            Blend One OneMinusSrcAlpha
+            
             
             
             CGPROGRAM
@@ -44,8 +44,8 @@ Shader "Shader/oscillateTrans" {
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
+                Oscillate(v.vertex.xyz, _Amplitude, _Frequency, _Phase);
                 o.pos = UnityObjectToClipPos( v.vertex );
-                Oscillate(o.pos, _Amplitude, _Frequency, _Phase);
                 o.uv0 = TRANSFORM_TEX( v.uv0, _MainTex );
                 return o;
             }

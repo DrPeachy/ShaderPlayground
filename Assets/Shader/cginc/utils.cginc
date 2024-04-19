@@ -1,6 +1,8 @@
 #ifndef UTILS_CGINC
 #define UTILS_CGINC
 
+    #define TWO_PI 6.28318530718
+
     float3 TriColAmbient(float3 n, float3 uCol, float3 dCol, float3 sCol, float weakness) {
         float upMask = max(0.0, n.y);
         float downMask = max(0.0, -n.y);
@@ -14,8 +16,8 @@
         pos += translation;
     }
 
-    void Oscillate(inout float4 pos, float amplitude, float frequency, float phase) {
-        pos += amplitude * sin(frequency * _Time.y + phase);
+    void Oscillate(inout float3 pos, float amplitude, float frequency, float phase) {
+        pos += amplitude * sin(frequency * _Time.y * TWO_PI + phase);
     }
 
     void Rotation(inout float3 pos, float3 rotation) {
