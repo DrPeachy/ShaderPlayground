@@ -16,10 +16,17 @@
         pos += translation;
     }
 
-    void Oscillate(inout float3 pos, float amplitude, float frequency, float phase) {
+    void OscillateTrans(inout float3 pos, float amplitude, float frequency, float phase) {
         pos += amplitude * sin(frequency * _Time.y * TWO_PI + phase);
     }
 
+    void Scale(inout float3 pos, float3 scale) {
+        pos *= scale;
+    }
+
+    void OscillateScale(inout float3 pos, float amplitude, float frequency, float phase) {
+        pos *= 1 + amplitude * sin(frequency * _Time.y * TWO_PI + phase);
+    }
     void Rotation(inout float3 pos, float3 rotation) {
         float3x3 rotMat = float3x3(
             cos(rotation.y) * cos(rotation.z), cos(rotation.y) * sin(rotation.z), -sin(rotation.y),
@@ -29,10 +36,14 @@
         pos = mul(rotMat, pos);
     }
 
-    void Scale(inout float3 pos, float3 scale) {
-        pos *= scale;
+    void OscillateRot(inout float3 pos, float amplitude, float frequency, float phase) {
+        float angleY = amplitude * sin(frequency * _Time.y * TWO_PI + phase);
+
+        float radY = radians(angleY);
+        float sinY, cosY = 0;
+        sincos(radY, sinY, cosY);
+        pos.yz = float2(pos.y * cosY - pos.z * sinY, pos.y * sinY + pos.z * cosY);
     }
 
-    
 
 #endif

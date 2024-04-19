@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: oscillateTrans
-  m_Shader: {fileID: 4800000, guid: f1ab75ba4caaf8640acc8a24b6cb0c48, type: 3}
+  m_Name: oscillateScale
+  m_Shader: {fileID: 4800000, guid: cee1990adf19eb7458dcb10322e981ff, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,13 +24,13 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a06faf6d2372f3744bd6ab468e8429ea, type: 3}
+        m_Texture: {fileID: 2800000, guid: f907f8cd056e0f044b27502f580b7529, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amplitude: 5
-    - _Frequency: 1.5
-    - _Phase: 0.444
+    - _Amplitude: 0.1
+    - _Frequency: 1.28
+    - _Phase: 5
     m_Colors: []
   m_BuildTextureStacks: []
