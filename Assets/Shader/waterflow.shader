@@ -1,67 +1,77 @@
-Shader "Shader/waterflow" {
-    Properties {
-        _MainTex ("RGB: color, A: Alpha Blend", 2D) = "grey" {}
-        _Opacity ("Opacity", Range(0, 1)) = 0.5
-        _NoiseTex ("Noise Texture", 2D) = "grey" {}
-        _NoiseInt ("Noise Intensity", Range(0, 5)) = 0.5
-        _FlowSpeed ("Flow Speed", Range(-10, 10)) = 0.5
+Shader "Unlit/waterFlow"
+{
+    Properties
+    {
+        _MainTex ("Texture", 2D) = "black" {}
+        _FlowMap ("FlowMap", 2D) = "white" {}
+        _FlowSpeed ("FlowSpeed", Range(0, 1)) = 0.1
+        [HDR]_FoamCol ("Foam Color", Color) = (1,1,1,1)
+        [HDR]_WaterCol ("Water Color", Color) = (1,1,1,1)
     }
-    SubShader {
-        Tags {
+    SubShader
+    {
+        Tags 
+        { 
             "Queue"="Transparent"
+            "IgnoreProjector"="True"    
             "RenderType"="Transparent"
-            "ForceNoShadowCasting"="True"
-            "IgnoreProjector"="True"
         }
-        Pass {
-            Name "FORWARD"
-            Tags {
-                "LightMode"="ForwardBase"
-            }
-            Blend One OneMinusSrcAlpha
-            
-            
+
+        LOD 100
+
+
+        Pass
+        {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            // make fog work
+            #pragma shader_feature _REVERSE_FLOW_ON
+
             #include "UnityCG.cginc"
-            #pragma multi_compile_fwdbase_fullshadows
-            #pragma target 3.0
 
             // Properties
-            uniform sampler2D _MainTex;
-            uniform half _Opacity;
-            uniform sampler2D _NoiseTex; uniform float4 _NoiseTex_ST;
-            uniform half _NoiseInt;
-            uniform half _FlowSpeed;
+            sampler2D _MainTex; float4 _MainTex_ST;
+            sampler2D _FlowMap;
+            half _FlowSpeed;
+            half3 _FoamCol;
+            half3 _WaterCol;
 
-            struct VertexInput {
+            struct appdata
+            {
                 float4 vertex : POSITION;
                 float2 uv0 : TEXCOORD0;
             };
-            struct VertexOutput {
-                float4 pos : SV_POSITION;
-                float2 uv0 : TEXCOORD0; // for main texture
-                float2 uv1 : TEXCOORD1; // for noise
+
+            struct v2f
+            {
+                float2 uv0 : TEXCOORD0;
+                float4 vertex : SV_POSITION;
             };
-            VertexOutput vert (VertexInput v) {
-                VertexOutput o = (VertexOutput)0;
-                o.pos = UnityObjectToClipPos( v.vertex );
-                o.uv0 = v.uv0;
-                o.uv1 = TRANSFORM_TEX(v.uv0, _NoiseTex);
-                o.uv1.x = o.uv1.x + frac(_Time.x * _FlowSpeed);
+
+            v2f vert (appdata v)
+            {
+
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv0 = TRANSFORM_TEX(v.uv0, _MainTex);
                 return o;
             }
-            half4 frag(VertexOutput i) : COLOR {
-                half4 var_MainTex = tex2D( _MainTex, i.uv0 );
-                half4 var_NoiseTex = tex2D( _NoiseTex, i.uv1 );
 
-                half noise = lerp(1.0, var_NoiseTex * 2.0, _NoiseInt);
-                half opacity = var_MainTex.a * _Opacity * noise;
-                return half4(var_MainTex.rgb * opacity, opacity);
+            fixed4 frag (v2f i) : SV_Target
+            {
+                // sample the texture
+                half2 var_Flowmap = tex2D(_FlowMap, i.uv0).rg * 2.0 - 1.0; // remap to -1 to 1
+                float phase0 = frac(_Time.y * _FlowSpeed);
+                float phase1 = frac(_Time.y * _FlowSpeed + 0.5);
+                half3 var_Maintex0 = tex2D(_MainTex, i.uv0 - var_Flowmap.xy * phase0).rgb;
+                half3 var_Maintex1 = tex2D(_MainTex, i.uv0 - var_Flowmap.xy * phase1).rgb;
+                half flowLerp = abs((0.5 - phase0) * 2.0);
+                half3 finalRGB = lerp(var_Maintex0, var_Maintex1, flowLerp);
+                
+                return half4(lerp(_WaterCol, _FoamCol, finalRGB), 1);
             }
             ENDCG
         }
     }
-    FallBack "Diffuse"
 }

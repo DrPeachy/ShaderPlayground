@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: waterflow
-  m_Shader: {fileID: 4800000, guid: a2b2f0c67d6c0c84c8b2362758eb9e36, type: 3}
+  m_Name: waterFlow
+  m_Shader: {fileID: 4800000, guid: 780d09044ea807040b9c17fb9e91830d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,18 +23,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a06faf6d2372f3744bd6ab468e8429ea, type: 3}
+    - _FlowMap:
+        m_Texture: {fileID: 2800000, guid: 66f03e840d6af3746b4a4a39d30b850c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NoiseTex:
-        m_Texture: {fileID: 2800000, guid: 1c06fe3ee50c0e14b8a0107c52b99b45, type: 3}
-        m_Scale: {x: 6, y: 6}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 19b6bd0b63ec1044fb7c956b0a2da5c8, type: 3}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FlowSpeed: 10
-    - _NoiseInt: 0.5
-    - _Opacity: 1
-    m_Colors: []
+    - _FlowSpeed: 0.123
+    m_Colors:
+    - _FoamCol: {r: 0.62996584, g: 2.6885846, b: 2.7255664, a: 1}
+    - _WaterCol: {r: 0, g: 0.03390972, b: 0.2458517, a: 1}
   m_BuildTextureStacks: []

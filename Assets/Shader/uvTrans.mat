@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: vertexAni
-  m_Shader: {fileID: 4800000, guid: 6604ed8667e12414492f9deab3694394, type: 3}
+  m_Name: uvTrans
+  m_Shader: {fileID: 4800000, guid: a2b2f0c67d6c0c84c8b2362758eb9e36, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,15 +24,17 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f907f8cd056e0f044b27502f580b7529, type: 3}
+        m_Texture: {fileID: 2800000, guid: a06faf6d2372f3744bd6ab468e8429ea, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: 1c06fe3ee50c0e14b8a0107c52b99b45, type: 3}
+        m_Scale: {x: 6, y: 6}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
-    m_Colors:
-    - _BodyRotParams: {r: 7.07, g: 1, b: 0, a: 0}
-    - _BodySwingParams: {r: 0.21, g: 1, b: 0, a: 0}
-    - _BodyTransParams: {r: 0.01, g: 1, b: 0, a: 0}
-    - _HeadScaleParams: {r: 0.26, g: 1.73, b: 0, a: 0}
-    - _TailRotParams: {r: 6.55, g: 1.66, b: 0, a: 0}
+    m_Floats:
+    - _FlowSpeed: 10
+    - _NoiseInt: 1.01
+    - _Opacity: 1
+    m_Colors: []
   m_BuildTextureStacks: []

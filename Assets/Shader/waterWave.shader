@@ -1,4 +1,4 @@
-Shader "Unlit/wave"{
+Shader "Unlit/waterWave"{
     Properties {
         _MainTex ("Texture", 2D) = "white" {}
         _WarpTex ("Warp Texture", 2D) = "white" {}
