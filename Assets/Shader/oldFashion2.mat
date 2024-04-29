@@ -99,7 +99,7 @@ Material:
     - _EnvDiffInt: 1
     - _EnvSpecInt: 1.37
     - _EnvSpecIntensity: 3.34
-    - _FresnelPow: 0.63
+    - _FresnelPow: 1.18
     - _FresnelPower: 1.26
     - _GlossMapScale: 1
     - _Glossiness: 0.5
