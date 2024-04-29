@@ -94,8 +94,9 @@ Shader "Unlit/waterFlowWithNorm"
                 float phase1 = frac(_Time.y * _FlowSpeed + 0.5);
                 half3 var_Maintex0 = tex2D(_MainTex, i.uv0 - var_Flowmap.xy * phase0).rgb;
                 half3 var_Maintex1 = tex2D(_MainTex, i.uv0 - var_Flowmap.xy * phase1).rgb;
+                half3 var_MainNorm = normalize(var_Maintex0 + var_Maintex1);
                 half flowLerp = abs((0.5 - phase0) * 2.0);
-                half3 nDirWS = normalize( mul(var_Maintex0, tbn));
+                half3 nDirWS = normalize( mul(var_MainNorm, tbn));
                 // vector preparation
                 half3 lDirWS = normalize(_WorldSpaceLightPos0.xyz);
                 half3 lrDirWS = reflect(-lDirWS, nDirWS);
