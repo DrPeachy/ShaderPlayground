@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _CubeMap:
-        m_Texture: {fileID: 8900000, guid: 0c2705013d8e53a488a4e352ae686bb4, type: 3}
+        m_Texture: {fileID: 8900000, guid: 0bdb187767de6cb4f8efdacee1fe18f4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FlowMap:
@@ -32,17 +32,22 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 19b6bd0b63ec1044fb7c956b0a2da5c8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 86fad25654ae7814db49740cce5c3f1c, type: 3}
+        m_Scale: {x: 3, y: 3}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 3ace2a2ae7414494a9e92c059b8b9396, type: 3}
         m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _CubeMapMip: 0
     - _FlowSpeed: 0.175
-    - _FresPow: 0
-    - _Opacity: 0.781
+    - _FresPow: 5.42
+    - _Opacity: 0.788
+    - _WaveInt: 0.438
     m_Colors:
-    - _FoamCol: {r: 0.35879806, g: 1.0173482, b: 1.1353014, a: 1}
-    - _LightCol: {r: 1.1863717, g: 1.1863717, b: 1.1863717, a: 1}
-    - _WaterCol: {r: 0, g: 0.013957664, b: 0.04123462, a: 1}
+    - _FoamCol: {r: 0.9468737, g: 2.684798, b: 2.9960783, a: 1}
+    - _LightCol: {r: 1.5838994, g: 1.5838994, b: 1.5838994, a: 1}
+    - _WaterCol: {r: 0, g: 0.03279521, b: 0.21763763, a: 1}
   m_BuildTextureStacks: []
