@@ -120,9 +120,7 @@ Shader "Unlit/waterFlowWithNorm"
                 half fresnel = pow(1.0 - saturate(dot(vDirWS, nDirWS)), _FresPow);
 
                 half3 finalRGB = lerp(var_Maintex0, var_Maintex1, flowLerp);
-                finalRGB = half3(lerp(_WaterCol.x, _FoamCol.x, finalRGB.r),
-                                 lerp(_WaterCol.y, _FoamCol.y, finalRGB.g),
-                                 lerp(_WaterCol.z, _FoamCol.z, finalRGB.b));
+                finalRGB = lerp(_WaterCol, _FoamCol, finalRGB);
                 finalRGB += var_CubeMap * fresnel * _LightCol;
                 
                 return half4(finalRGB, _Opacity);

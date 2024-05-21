@@ -52,10 +52,10 @@ Shader "Shader/ogre/ogre_magi" {
             #include "UnityCG.cginc"
             #include "AutoLight.cginc"
             #include "Lighting.cginc"
-            #include "cginc/utils.cginc"
+            //#include "cginc/utils.cginc"
 
             #pragma multi_compile_fwdbase_fullshadows
-            #pragma target 3.0
+            //#pragma target 3.0
 
             // Properties
             sampler2D _MainTex;
@@ -201,5 +201,5 @@ Shader "Shader/ogre/ogre_magi" {
         }
     }
     FallBack "Legacy Shaders/Transparent/Cutout/VertexLit"
-    CustomEditor "ShaderForgeMaterialInspector"
+
 }

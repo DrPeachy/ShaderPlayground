@@ -55,19 +55,6 @@
         return -1.0 + 2.0 * frac(sin(p) * (43758.5453123 + seed));
     }
 
-    // Linear interpolation
-    float lerp(float a, float b, float t)
-    {
-        return a + t * (b - a);
-    }
-
-    // Smoothstep function
-    float smoothstep(float edge0, float edge1, float x)
-    {
-        x = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
-        return x * x * (3 - 2 * x);
-    }
-
     // Perlin noise function
     float perlin(float3 p, float freq, float seed)
     {
